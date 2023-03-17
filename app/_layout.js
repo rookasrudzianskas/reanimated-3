@@ -4,7 +4,8 @@ const RootLayout = () => {
   return (
     <Stack>
       <Stack.Screen name="[id]" options={{
-        headerShown: false
+        headerShown: false,
+        animation: 'slide_from_bottom',
       }}></Stack.Screen>
     </Stack>
   )
