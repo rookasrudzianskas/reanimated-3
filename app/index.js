@@ -8,7 +8,7 @@ export default function Page() {
     <Link href={`/${item.id}`} asChild>
       <TouchableOpacity activeOpacity={0.7} style={styles.item}>
         <Animated.Image sharedTransitionTag={`image-${item.id}`} style={styles.image} source={{ uri: item.image }} />
-        <Text style={styles.name}>{item.name}</Text>
+        <Animated.Text sharedTransitionTag={`title-${item.name}`} style={styles.name}>{item.name}</Animated.Text>
       </TouchableOpacity>
     </Link>
   );

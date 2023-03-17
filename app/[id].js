@@ -12,7 +12,7 @@ const CityDetails = ({}) => {
     <View style={styles.container}>
       <Animated.Image sharedTransitionTag={`image-${city.id}`} style={styles.image} source={{ uri: city?.image }} />
       <View style={styles.details}>
-        <Text style={styles.name}>{city?.name}</Text>
+        <Animated.Text sharedTransitionTag={`title-${city.name}`} style={styles.name}>{city?.name}</Animated.Text>
         <Text style={styles.description}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod
           nec diam vitae tincidunt. Pellentesque hendrerit felis sed ante
