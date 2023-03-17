@@ -1,16 +1,18 @@
 import React from 'react';
-import {useSearchParams} from "expo-router";
+import {useRouter, useSearchParams} from "expo-router";
 import {cities} from "../data/cities";
-import { Image, StyleSheet, Text, View } from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Ionicons} from "@expo/vector-icons";
 
 const CityDetails = ({}) => {
   const {id} = useSearchParams()
-  const city = cities.find(city => city.id === id)
+  const city = cities.find(city => city.id == id)
+  const router = useRouter()
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{ uri: city.image }} />
+      <Image style={styles.image} source={{ uri: city?.image }} />
       <View style={styles.details}>
-        <Text style={styles.name}>{city.name}</Text>
+        <Text style={styles.name}>{city?.name}</Text>
         <Text style={styles.description}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod
           nec diam vitae tincidunt. Pellentesque hendrerit felis sed ante
@@ -18,6 +20,9 @@ const CityDetails = ({}) => {
           imperdiet rhoncus.
         </Text>
       </View>
+      <TouchableOpacity onPress={() => router.back()} className="absolute top-16 left-10 bg-black rounded-md p-1" activeOpacity={0.7}>
+        <Ionicons name="arrow-back-circle-sharp" size={24} color="white" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -29,10 +34,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    position: 'relative',
   },
   image: {
     width: '100%',
-    height: 200,
+    height: '65%',
   },
   details: {
     padding: 20,

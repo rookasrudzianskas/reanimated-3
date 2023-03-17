@@ -5,7 +5,7 @@ import {Link} from "expo-router";
 export default function Page() {
   const numColumns = 2;
   const renderItem = ({ item }) => (
-    <Link href={item.id} asChild>
+    <Link href={`/${item.id}`} asChild>
       <TouchableOpacity activeOpacity={0.7} style={styles.item}>
         <Image style={styles.image} source={{ uri: item.image }} />
         <Text style={styles.name}>{item.name}</Text>
