@@ -1,34 +1,52 @@
-import { StyleSheet, Text, View } from "react-native";
+import {View, StyleSheet, Image, Text, FlatList, TouchableOpacity} from 'react-native';
+import {cities} from "../data/cities";
+import {Link} from "expo-router";
 
 export default function Page() {
+  const numColumns = 2;
+  const renderItem = ({ item }) => (
+    <Link href={item.id} asChild>
+      <TouchableOpacity activeOpacity={0.7} style={styles.item}>
+        <Image style={styles.image} source={{ uri: item.image }} />
+        <Text style={styles.name}>{item.name}</Text>
+      </TouchableOpacity>
+    </Link>
+  );
+
+  const keyExtractor = (item, index) => index.toString();
   return (
-    <View style={styles.container}>
-      <View style={styles.main}>
-        <Text style={styles.title}>Hello World</Text>
-        <Text style={styles.subtitle}>This is the first page of your app.</Text>
-      </View>
+    <View className="bg-white flex-1 pt-16">
+      <FlatList
+        data={cities}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        numColumns={numColumns}
+        columnWrapperStyle={styles.columnWrapper}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  item: {
     flex: 1,
-    alignItems: "center",
-    padding: 24,
+    flexDirection: 'column',
+    margin: 5,
+    alignItems: 'center',
   },
-  main: {
-    flex: 1,
-    justifyContent: "center",
-    maxWidth: 960,
-    marginHorizontal: "auto",
+  image: {
+    width: '100%',
+    height: 150,
+    borderRadius: 10,
   },
-  title: {
-    fontSize: 64,
-    fontWeight: "bold",
+  name: {
+    marginTop: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
-  subtitle: {
-    fontSize: 36,
-    color: "#38434D",
+  columnWrapper: {
+    justifyContent: 'space-between',
   },
 });
