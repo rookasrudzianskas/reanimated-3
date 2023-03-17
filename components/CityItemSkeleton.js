@@ -10,9 +10,9 @@ const CityItemSkeleton = ({}) => {
       withDelay(1000, withTiming(0.5, {
         duration: 1000
       })),
-      withDelay(1000, withTiming(1, {
+      withTiming(1, {
         duration: 1000
-      })),
+      }),
     ), -1, false)
   }, [])
     return (
