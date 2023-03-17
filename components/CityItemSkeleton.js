@@ -1,13 +1,19 @@
-import React from 'react';
-import {useSharedValue} from "react-native-reanimated";
+import React, {useEffect} from 'react';
+import {useSharedValue, withRepeat, withTiming} from "react-native-reanimated";
 import {StyleSheet, View} from "react-native";
 
 const CityItemSkeleton = ({}) => {
   const opacity = useSharedValue(1)
+
+  useEffect(() => {
+    opacity.value = withRepeat(withTiming(0.5, {
+      duration: 1000
+    }))
+  }, [])
     return (
       <View style={styles.item}>
         <Animated.View style={[styles.imageLoading, opacity]} />
-        <View style={{height: 20, width: '50%', backgroundColor: 'gainsboro'}} />
+        <Animated.View style={[{height: 20, width: '50%', backgroundColor: 'gainsboro'}, opacity]} />
       </View>
     )
   }
