@@ -9,8 +9,11 @@ const CityItemSkeleton = ({}) => {
     opacity.value = withRepeat(withSequence(
       withDelay(1000, withTiming(0.5, {
         duration: 1000
-      }))
-    ), -1, true)
+      })),
+      withDelay(1000, withTiming(1, {
+        duration: 1000
+      })),
+    ), -1, false)
   }, [])
     return (
       <View style={styles.item}>
