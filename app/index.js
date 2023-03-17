@@ -7,7 +7,7 @@ export default function Page() {
   const renderItem = ({ item }) => (
     <Link href={`/${item.id}`} asChild>
       <TouchableOpacity activeOpacity={0.7} style={styles.item}>
-        <Animated.Image sharedTransitionTag={true} style={styles.image} source={{ uri: item.image }} />
+        <Animated.Image sharedTransitionTag={"image"} style={styles.image} source={{ uri: item.image }} />
         <Text style={styles.name}>{item.name}</Text>
       </TouchableOpacity>
     </Link>

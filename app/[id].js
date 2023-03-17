@@ -10,7 +10,7 @@ const CityDetails = ({}) => {
   const router = useRouter()
   return (
     <View style={styles.container}>
-      <Animated.Image sharedTransitionTag={true} style={styles.image} source={{ uri: city?.image }} />
+      <Animated.Image sharedTransitionTag={"image"} style={styles.image} source={{ uri: city?.image }} />
       <View style={styles.details}>
         <Text style={styles.name}>{city?.name}</Text>
         <Text style={styles.description}>
