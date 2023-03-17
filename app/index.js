@@ -1,13 +1,13 @@
 import {View, StyleSheet, Image, Text, FlatList, TouchableOpacity} from 'react-native';
 import {cities} from "../data/cities";
 import {Link} from "expo-router";
-
+import Animated from "react-native-reanimated";
 export default function Page() {
   const numColumns = 2;
   const renderItem = ({ item }) => (
     <Link href={`/${item.id}`} asChild>
       <TouchableOpacity activeOpacity={0.7} style={styles.item}>
-        <Image style={styles.image} source={{ uri: item.image }} />
+        <Animated.Image sharedTransitionTag={true} style={styles.image} source={{ uri: item.image }} />
         <Text style={styles.name}>{item.name}</Text>
       </TouchableOpacity>
     </Link>

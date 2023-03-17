@@ -3,14 +3,14 @@ import {useRouter, useSearchParams} from "expo-router";
 import {cities} from "../data/cities";
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Ionicons} from "@expo/vector-icons";
-
+import Animated from "react-native-reanimated";
 const CityDetails = ({}) => {
   const {id} = useSearchParams()
   const city = cities.find(city => city.id == id)
   const router = useRouter()
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{ uri: city?.image }} />
+      <Animated.Image sharedTransitionTag={true} style={styles.image} source={{ uri: city?.image }} />
       <View style={styles.details}>
         <Text style={styles.name}>{city?.name}</Text>
         <Text style={styles.description}>
