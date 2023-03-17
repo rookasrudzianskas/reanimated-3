@@ -1,8 +1,9 @@
 import {View, StyleSheet, Image, Text, FlatList, TouchableOpacity} from 'react-native';
 import {cities} from "../data/cities";
 import {Link} from "expo-router";
-import Animated from "react-native-reanimated";
+import Animated, {useSharedValue} from "react-native-reanimated";
 import {useState} from "react/cjs/react.production.min";
+import CityItemSkeleton from "../components/CityItemSkeleton";
 export default function Page() {
   const numColumns = 2;
   const CityItem = ({ item }) => (
@@ -13,13 +14,6 @@ export default function Page() {
       </TouchableOpacity>
     </Link>
   );
-
-  const CityItemSkeleton = () => (
-    <View style={styles.item}>
-      <View style={styles.imageLoading} />
-      <View style={{height: 20, width: '50%', backgroundColor: 'gainsboro'}}/>
-    </View>
-  );
   const keyExtractor = (item, index) => index.toString();
   const [loading, setLoading] = useState(true);
 
@@ -27,8 +21,8 @@ export default function Page() {
     return (
       <View className="bg-white flex-1 pt-16">
         <FlatList
-          data={Array(4)}
-          renderItem={CityItemSkeleton}
+          data={Array(10)}
+          renderItem={() => <CityItemSkeleton />}
           numColumns={numColumns}
           columnWrapperStyle={styles.columnWrapper}
           showsVerticalScrollIndicator={false}
@@ -41,7 +35,7 @@ export default function Page() {
     <View className="bg-white flex-1 pt-16">
       <FlatList
         data={cities}
-        renderItem={CityItem}
+        renderItem={() => <CityItem />}
         keyExtractor={keyExtractor}
         numColumns={numColumns}
         columnWrapperStyle={styles.columnWrapper}
