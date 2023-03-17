@@ -1,14 +1,16 @@
 import React, {useEffect} from 'react';
-import {useSharedValue, withDelay, withRepeat, withTiming} from "react-native-reanimated";
+import {useSharedValue, withDelay, withRepeat, withSequence, withTiming} from "react-native-reanimated";
 import {StyleSheet, View} from "react-native";
 
 const CityItemSkeleton = ({}) => {
   const opacity = useSharedValue(1)
 
   useEffect(() => {
-    opacity.value = withRepeat(withDelay(1000, withTiming(0.5, {
-      duration: 1000
-    })), -1, true)
+    opacity.value = withRepeat(withSequence(
+      withDelay(1000, withTiming(0.5, {
+        duration: 1000
+      }))
+    ), -1, true)
   }, [])
     return (
       <View style={styles.item}>
